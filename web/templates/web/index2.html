@@ -1,0 +1,54 @@
+{% extends 'web/layout/main.html' %}
+{% block content %}
+{% load static %}
+ 
+  <h2>Avatar: The Last Airbender</h2>
+<section class="featured">
+    
+        <!-- Carousel Section -->
+        <div class="carousel-content">
+            {% include 'web/carousel.html' %}
+        </div>
+
+        <!-- Additional Content Section -->
+        <div class="other-content">
+            <h3>Additional Content</h3>
+            <p>This area can be used for other purposes, such as text or additional widgets.</p>
+        
+
+    <p>EP 20 · 24m</p>
+    <p>The story follows Aang, a young Airbender, as he embarks on a journey to master all four elements and defeat the Fire Lord.</p>
+    </div>
+</section>
+
+<section class="trending">
+    <h2>Trending</h2>
+    <div class="trending-container">
+        <div class="anime-item">
+            <span>1. The Legend of Korra</span>
+            <span>200,200 likes</span>
+        </div>
+        <div class="anime-item">
+            <span>2. Naruto Shippuden</span>
+            <span>180,000 likes</span>
+        </div>
+        <div class="anime-item">
+            <span>3. One Piece</span>
+            <span>170,000 likes</span>
+        </div>
+        <div class="anime-item">
+            <span>4. Attack on Titan</span>
+            <span>150,000 likes</span>
+        </div>
+        <div class="anime-item">
+            <span>5. My Hero Academia</span>
+            <span>140,000 likes</span>
+        </div>
+    </div>
+</section>
+
+<div class="call-to-action">
+    <h2>Read Avatar: The Last Airbender Comics</h2>
+    <a href="#">Read Now</a>
+</div>
+{% endblock content %}

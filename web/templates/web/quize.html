@@ -1,0 +1,115 @@
+{% extends 'web/layout/main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'web/quize.css' %}">
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+        }
+        .difficulty-label {
+    margin-left: auto;
+}
+
+</style>
+<h1>Avatar: The Last Airbender Quiz</h1>
+<form method="POST" id="quiz-form">
+    {% csrf_token %}
+    <div class="question mb-4">
+        <p><strong>{{ question.question }}</strong></p>
+        <!-- Render difficulty label using Django template logic -->
+        <div class="difficulty-label">
+            {% if defaculty == '1' %}
+                <span class="btn btn-success label">Easy</span>
+            {% elif  defaculty == '2' %}
+                <span class="btn btn-warning label">Medium</span>
+            {% else %}
+                <span class="btn btn-danger label">Hard</span>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% for option in options %}
+            <div class="col-6 mb-2">
+                <button 
+                    type="button" 
+                    class="btn btn-primary w-100 h-100 option-button" 
+                    value="{{ option.text }}" 
+                    onclick="selectOption(this)">
+                    {% if option.img_url %}
+                    <img src="{{ option.img_url }}" alt="{{ option.text }}" class="img-fluid mb-2">
+                    {% endif %}
+                    {{ option.text }}
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Skip and End Quiz Buttons -->
+    <div class="row">
+        <div class="col-6 mb-2">
+            <button type="button" class="btn btn-warning w-100" onclick="skipQuestion()">Skip</button>
+        </div>
+        <div class="col-6 mb-2">
+            <button type="button" class="btn btn-danger w-100" onclick="endQuiz()">End Quiz</button>
+        </div>
+    </div>
+
+    <input type="hidden" name="answer" id="selected-answer">
+</form>
+
+<script>
+    const correctAnswer = "{{ answer|default:'' }}"; // Safely default to an empty string
+    
+    function selectOption(btn) {
+        // Disable all buttons to prevent multiple selections
+        document.querySelectorAll('.option-button').forEach(option => option.disabled = true);
+
+        // Log the selected answer and correct answer for debugging
+        console.log("Selected Answer: " + btn.value + ", Correct Answer: " + correctAnswer);
+
+        // Add visual feedback based on correctness
+        if (btn.value == correctAnswer) {
+            btn.classList.add("btn-success");
+        } else {
+            btn.classList.add("btn-danger");
+        }
+
+        // Submit the form after a delay
+        setTimeout(() => {
+            document.getElementById("selected-answer").value = btn.value;
+            document.getElementById("quiz-form").submit();
+        }, 1000);
+    }
+
+    function skipQuestion() {
+        document.getElementById("selected-answer").value = "skip";
+        document.getElementById("quiz-form").submit();
+    }
+
+    function endQuiz() {
+        window.location.href = "{% url 'quiz_result' %}";
+    }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color:red;
+        }
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color:red;
+        }
+        .difficulty-label {
+    margin-left: auto;
+}

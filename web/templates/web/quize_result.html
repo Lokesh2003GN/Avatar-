@@ -1,0 +1,32 @@
+{% extends 'web/layout/main.html' %}
+
+{% block content %}
+<style>
+    .result_page{
+         padding-top:15%;
+         align-items: center;
+         text-align: center;
+         justify-content: center;
+     }
+</style>
+<div class="result_page">
+<h1>Quiz Results</h1>
+
+<div class="result">
+    <p><strong>Your score: {{ score }} / {{ total }}</strong></p>
+    <p>Well done on completing the quiz!</p>
+
+    <!-- Add logic for providing feedback based on score -->
+    {% if score == total %}
+        <p>Perfect! You got all the answers correct!</p>
+    {% elif score >= half_total %}
+        <p>Great job! You answered most of the questions correctly.</p>
+    {% else %}
+        <p>Better luck next time. Keep practicing!</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+<a href="{% url 'reset_quiz' %}" class="btn btn-primary">Take Quiz Again</a>
+</div>
+{% endblock content %}
