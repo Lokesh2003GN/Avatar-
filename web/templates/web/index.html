@@ -1,0 +1,67 @@
+{% extends 'web/layout/main.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'web/index.css' %}">
+<link rel="stylesheet" href="{% static 'web/characters.css' %}">
+
+
+<div class="landing_pg">
+    <img class="landing-image" src="https://drive.google.com/thumbnail?id=16CvYTD9vKChlFLQyfCza3D7SYdei61mT&sz=w1000" alt="Landing Image">
+    <div class="navbar-container">
+        {% include 'web/inc/navebar.html' %}
+    </div>
+    <div class="title-card">
+        <h2>The Journey of Friendship and Balance</h2>
+        <h4>Enter the World of Avatar</h4>
+        <p>Step into a realm where the four elements—Water, Earth, Fire, and Air—shape destinies. Join Team Avatar as they navigate a world in turmoil, striving to bring balance, unity, and peace.</p>
+    </div>
+</div>
+
+<div class="pop-up">
+        {% include 'web/layout/quote-of-the-day.html' %}
+ </div>
+<div class="about">
+    <div class="col-left">
+        <h2>About the series</h2>
+        <p>Set in a world divided into four nations, Avatar: The Last Airbender follows the journey of Aang, the last Airbender and the Avatar, as he strives to bring peace and balance by mastering all four elements and defeating the Fire Nation.</p>
+        
+        <p>Brought to life by <b>Michael Dante DiMartino</b> and <b> Bryan Konietzko</b>, this series has captured hearts worldwide with its deep themes, humor, and stunning animation.</p>
+        <button class="learn-more-btn">Learn more </button>
+        
+    </div>
+    <div class="col-right">
+        {% include 'web/carousel.html' %}
+    </div>
+    
+</div>
+
+
+<div class="main-characters">
+    <h2>Character Profiles</h2>
+    <div class="row justify-content-start p-3"style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+  {% for item in characters %}
+  <div class="col-md-4 col-sm-4 col-lg-3">
+    <a href="{% url 'characterDetails' category=name name=item.name %}" style="text-decoration:none;">
+      <div class="card" style="height: 100%; display: flex; flex-direction: column;">
+        <div class="square-image-wrapper">
+          <img src="{{ item.Character_image_url }}" class="card-img-top square-image" alt="...">
+        </div>
+        <div class="card-body" style="flex-grow: 1;">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">
+              {{ item.description|slice:":50" }}{% if item.description|length > 50 %}...{% endif %}
+              </p>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+</div>
+
+
+
+{% endblock content %}
+
+

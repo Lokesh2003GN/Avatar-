@@ -1,0 +1,46 @@
+<div id="quote-popup" class="popup" onmousedown="startDrag(event)">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <img src="" alt="Quote of the Day" id="popup-quote-img">
+        
+    </div>
+</div>
+
+<script>
+
+
+const quoteImages = [
+"https://drive.google.com/thumbnail?id=15RWwd6Jj5bUJGS9BRqWUNLyJrawrfdk7&sz=w1000",
+"https://drive.google.com/thumbnail?id=15cOoPXS_Itm9kVpFIUmhMnpOGyEQjI9d&sz=w1000",
+"https://drive.google.com/thumbnail?id=15Df7YjHKDEOlGv-e-MUANhLenJVJL68L&sz=w1000",
+"https://drive.google.com/thumbnail?id=15DgQEsMXJ5q_9HE49c5ylRS7fMGfDyNz&sz=w1000",
+"https://drive.google.com/thumbnail?id=15DgQEsMXJ5q_9HE49c5ylRS7fMGfDyNz&sz=w1000",
+"https://drive.google.com/thumbnail?id=15fX9xKeCmixPS7HzC4bIoA9bVUU5IXV0&sz=w1000",
+"https://drive.google.com/thumbnail?id=15f_PWuk350889qH0lL9xKdtn3Sef-jYJ&sz=w1000",
+"https://drive.google.com/thumbnail?id=15hMME4PVita2dzdbl2uGBfpSU_ZnP4en&sz=w1000",
+"https://drive.google.com/thumbnail?id=15kPnUJ1IelyxrgDewxuUtUlwYHmVRk_a&sz=w1000",
+"https://drive.google.com/thumbnail?id=15nT8JquE0Of0gsJBQ3UcVIsVjB2DhTqQ&sz=w1000",
+"https://drive.google.com/thumbnail?id=15p5nkERGT9B-0MZlNhRxMiAfAIVg1-jh&sz=w1000",
+"https://drive.google.com/thumbnail?id=15pYdrtPgKqj8Hd4mf-1MAgt-yhceYAoM&sz=w1000",
+"https://drive.google.com/thumbnail?id=15y8izP7P1RjTXPOcCVLyI_Jx-ANMsy03&sz=w1000",
+"https://drive.google.com/thumbnail?id=15ynmTVTn9syujRS0nNvw1mK1FG_DN_VP&sz=w1000",
+"https://drive.google.com/thumbnail?id=162uumaku8p2E44Xg_bONAnZ5Me7MVnvr&sz=w1000",
+"https://drive.google.com/thumbnail?id=163tup78InkhgijXutT25xe49iBTRSYA9&sz=w1000",
+"https://drive.google.com/thumbnail?id=164OT-naID3-UcX6_RVCqCM7acrsRWeoN&sz=w1000",
+"https://drive.google.com/thumbnail?id=15eRsMiu_ctC_PPt-sBCjsV_c62ZCeE2h&sz=w1000",
+];
+
+
+function openPopup() {
+    const today = new Date();
+    const index = today.getDate() % quoteImages.length; // Cycle through images based on the day
+    document.getElementById("popup-quote-img").src = quoteImages[index];
+    document.getElementById("quote-popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("quote-popup").style.display = "none";
+}
+
+window.onload = openPopup; // Show the quote as soon as the page loads
+</script>

@@ -1,0 +1,30 @@
+{% extends 'web/layout/main.html' %}
+
+{% block content %}
+
+<section class="mx-5">
+    <div class="container-card" style="background-color:#333; padding:20px">
+        <div class="row">
+            <div class="col-12">
+                <h3 style="padding-left:20px">{{ name }}</h3>
+                <hr style="border: 2px solid #f0a500;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row justify-content-center p-3">
+        <img src="{{ img }}" class="card-img-top character-image" alt="..." style="max-width: 300px;">
+        {% for para in details %}
+            {% if not para.hide_title %}
+                <h3>{{ para.title }}</h3>
+            {% endif %}
+            <br>
+            <p>{{ para.body }}</p>
+        {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}
