@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8(dw1fa#w1wff9)m#$!nxzw2=+0i)vp3iv4d1!i9jx6z2se&1+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://avatar-iwjn.onrender.com']
 
 
 # Application definition
